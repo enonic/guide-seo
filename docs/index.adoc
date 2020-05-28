@@ -73,7 +73,7 @@ always, hourly, daily, weekly, monthly, yearly, never
 Values range from 0.0 - 1.0
 |===
 
-Put the sitemap on the root directory of the page "https://example.com/sitemap.xml". It can be located on any path, but this limits the sitemap to only pages located under it. "https://example.com/test/sitemap.xml" can not link to "https:// example.com/foobar". +
+Put the sitemap on the root directory of the page "\https://example.com/sitemap.xml". It can be located on any path, but this limits the sitemap to only pages located under it. "\https://example.com/test/sitemap.xml" can not link to "\https:// example.com/foobar". +
 You don’t always need a sitemap.xml file for your site. If you have a small site or all of your pages have good linking between them then it could be you don't need one. +
 Since crawlers tale some time to search through pages, it might not find the new and updated articles when crawling. On the sitemap you can give information on how often each page gets updated. This gives information to the crawler what you think are the important parts of the site.
 Enonic XP has an app that handles the sitemap for you. The app is named link:https://market.enonic.com/vendors/enonic/com.enonic.app.sitemapxml[sitemap.xml] and can be installed from our market, it’s available on any installation. Be aware, this app is not suited for very large sites, as the list of URLs is dynamically generated. +
@@ -186,7 +186,7 @@ Some search engines have extended the format to allow new features in the robots
 === Meta exclude
 
 While it is possible to exclude a single page in robots.txt file, it will not stop the page from appearing in search engine results. This is because a link to a page can be indexed without the crawler visiting it.
-Let’s say on site: http://foobar.com there is a link to a login page. The crawler could find the login link and show the link on the search engine even when robots.txt file excludes that specific page. 
+Let’s say on site: \http://foobar.com there is a link to a login page. The crawler could find the login link and show the link on the search engine even when robots.txt file excludes that specific page. 
 
 If you want to exclude a page from being on a search engine add the meta tag:
 <meta name="robots" content="noindex" />
@@ -322,7 +322,7 @@ Crawlers can then index the different pages and give users the best language for
   <link rel="alternate" hreflang="nb-no" href="no.example.com/" />
 ----
 
-The hreflang value should be  ISO_639-1 code followed by an optional a dash “-” and ISO_3166-1 code. The language code ISO_3166 is required. Exmaple: "en-gb" "en" english language code, and "gb" Great Britain jcountry code
+The hreflang value should be  ISO_639-1 code followed by an optional a dash “-” and ISO_3166-1 code. The language code ISO_3166 is required. Exmaple: "en-gb" "en" english language code, and "gb" Great Britain country code
 
 Some notes - each page should link itself and all other languages. If you have an English, Norwegian and Belarusian page, they should all have three links for each language. The link should be close to the top of the head tag and needs to be in the head element for crawlers to find it.
 
