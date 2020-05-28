@@ -1,7 +1,6 @@
-# Guide for Testing Apps
+# Guide SEO web development
 
-This library implements simple caching methods that can be used in your apps. See documentation
-here: https://enonic-docs.s3.amazonaws.com/com.enonic.guide/guide-testing-apps/index.html
+This guide gives developers information on how to develop with SEO in mind.
 
 ## Building
 
