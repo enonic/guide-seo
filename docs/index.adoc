@@ -1,6 +1,8 @@
 
 = SEO Web Development
+
 By Persijn Kwekkeboom
+
 :toc: 
 
 // Search engine crawlers
@@ -22,14 +24,20 @@ By Persijn Kwekkeboom
 // Page speed
 // Responsive design
 
-“Search Engine Optimization is about helping search engines understand and present content.” - The Google Search Quality team
-SEO has become a hot topic, and we developers can make it easier for our users to find the page by using it. Search engines will try to look for content on a site with crawlers. The crawlers give the search engines its basic information, the search engine processes the data so that users can search for it. The crawler can overlook information, or find the wrong pages. It can be difficult to find the correct information on a page and keep this up to date. Pages change all the time; new sites go online, sites get taken down, articles get posted, people write comments, forums posts, etc. This guide will give you information on how to develop for Enonic XP so that crawlers and search engines understand your content.. 
+> “Search Engine Optimization is about helping search engines understand and present content.” - The Google Search Quality team
+
+SEO has become a hot topic, and we developers can make it easier for our users to find the page with using it. +
+
+Search engines will try to look for content on a site with crawlers. This is the information search engines use. This data gets processes so that users can search it, but they can overlook information or even find the wrong pages. How can crawlers find the correct information when sites change all the time; new sites go online, articles get posted, forums posts get created, etc. The guide will teach you how to handle SEO development with Enonic XP. 
 
 The most important part of SEO is the content of the site. Bad content will rank lower on search results, no matter how well developed the site is. It can even get punished if you over-use some of the methods in this guide. So be careful when applying the suggestions in this guide, the site might just become too good to be true. 
-Note: All examples with controllers are examples for our link:https://market.enonic.com/vendors/enonic/content-studio[CMS Content Studio]
 
+NOTE: This guide you have a basic understanding of Enonic XP and link:https://market.enonic.com/vendors/enonic/content-studio[Content Studio].
+
+[#sitemap]
 == Sitemap
-If you want to help search engine crawlers find pages and other files on your site, you can create a sitemap file that gives useful information on all pages.
+If you want to help search engine crawlers locate pages or other files on your site, you can create a sitemap file. This file gives importent information to crawlers. Crawlers can take some time to search through pages, it might take a while to find the new articles. To updated those pages you can give information on how often each page gets updated in the sitemap. Crawlers will update the index, or save a new result on the search engine. This lets people search for the newest content. 
+
 Sitemap files can be in different formats, an RSS feed, text file or XML. The most accurate one is the XML format as it gives additional information. A single sitemap file has a limit of 50,000 urls.
 
 
@@ -73,22 +81,25 @@ always, hourly, daily, weekly, monthly, yearly, never
 Values range from 0.0 - 1.0
 |===
 
-Put the sitemap on the root directory of the page "\https://example.com/sitemap.xml". It can be located on any path, but this limits the sitemap to only pages located under it. "\https://example.com/test/sitemap.xml" can not link to "\https:// example.com/foobar". +
-You don’t always need a sitemap.xml file for your site. If you have a small site or all of your pages have good linking between them then it could be you don't need one. +
-Since crawlers tale some time to search through pages, it might not find the new and updated articles when crawling. On the sitemap you can give information on how often each page gets updated. This gives information to the crawler what you think are the important parts of the site.
+Put the sitemap on the root directory of the page `\https://example.com/sitemap.xml`. + 
+It can be located on any path, but this limits the sitemap to only pages located under it. `\https://example.com/test/sitemap.xml` can not link to `\https:// example.com/foobar`. +
+You don’t always need a sitemap.xml file for your site. If you have a small site or all of your pages have good linking between them then it could be that it is not needed. +
+
 Enonic XP has an app that handles the sitemap for you. The app is named link:https://market.enonic.com/vendors/enonic/com.enonic.app.sitemapxml[sitemap.xml] and can be installed from our market, it’s available on any installation. Be aware, this app is not suited for very large sites, as the list of URLs is dynamically generated. +
 
+[#sitemap-index]
 === Sitemap index 
-Sometimes you want to use multiple files to index a site or the limit of 50.000 is too small. To use multiple sitemaps add a sitemap index file. 
+Sometimes you want to use multiple sitemap files for a site like when reaching the *limit of 50.000 entries*. + 
+To use multiple sitemaps add a sitemap index file. 
 
-.sitemap
+.sitemap index
 [source, xml]
 ----
 <?xml version=”1.0” encoding=”UTF-8”?>
   <sitemapindex xmls=”http://www.sitemaps.org/schema/sitemap/0.9”>
     <sitemap>
       <loc>https://foobar.org/sitemap1.xml</loc>
-      <lastmod>2020-0-1-01</lastmod>
+      <lastmod>2020-01-01</lastmod>
     </sitemap>
     <sitemap>
       <loc>https://foobar.org/sitemap2.xml</loc>
@@ -114,6 +125,10 @@ Sometimes you want to use multiple files to index a site or the limit of 50.000 
 |Last time the sitemap was changed
 |===
 
+Sitemap index file gives information on where the other sitemap files are located. + 
+The siteindex file name is same as the sitemap. Example: `\https://foobar.com/sitemap.xml`
+
+[#image-sitemap]
 === Image sitemap
 If you want to give information to the crawler about images google has an option for this. It can both be a separate sitemap or add to the existing one.
 
@@ -158,9 +173,18 @@ If you want to give information to the crawler about images google has an option
 |Url to image license
 |===
 
+IMPORTANT: Sitemaps need to be submitted to search engines, each search engine has a interface to submit them +
+Or you can open this url: {searchengine_url}/ping?sitemap={sitemap_url} + 
+Example: bing.com/ping?sitemap=https://foobar.com
+
+NOTE: For those that want more details on sitemaps see link:https://www.sitemaps.org/protocol.html[Sitemaps protocol]
+
+[#Robots]
 == Robots.txt
-While a sitemap will inform crawlers what pages to search, the Robots.txt file tells the crawler what should be excluded.
-If you don’t want a page crawled simply disallow that page in the robots.txt file. Examples of pages that should be excluded: search pages, empty pages, test pages, error pages. You probably do not want a user to get redirected from a search engine to a search on your own site.
+While a sitemap will inform crawlers what pages to crawl, the Robots.txt file tells the crawler what should not be crawled. +
+If you don’t want a page crawled simply disallow that page in the robots.txt file. +
+Examples of pages that should be excluded: search pages, empty pages, test pages, error pages. +
+You probably do not want a user to get redirected from a search engine to a search on your own site. +
 Robots.txt format:
 
 .robots.txt example
@@ -172,39 +196,58 @@ Robots.txt format:
   Disallow: /tmp/
 ----
 
-*User-agent* tell the robots they are allowed to crawl the site. +
-*Dissallow* what area not to be crawled. +
 
-From the example above: "Disallow: /search/" will exclude: +
-{siteurl}/search.html +
-{siteurl}/search/ +
-{siteurl}/search/foo.html
+User-agent::
+Tell the robots they are allowed to crawl the site.
+Dissallow::
+What area not to be crawled.
 
-On the Enonic XP platform  you can install a link:https://market.enonic.com/vendors/enonic/com.enonic.app.robotstxt[Robots.txt app] where you can define all areas that should be excluded directly from Content Studio. +
+`Disallow: /search/` will exclude:
+
+* `{siteurl}/search.html` 
+* `{siteurl}/search/` 
+* `{siteurl}/search/foo.html`
+
+On the Enonic XP platform  you can install the app link:https://market.enonic.com/vendors/enonic/com.enonic.app.robotstxt[Robots.txt] where you can define all areas that should be excluded directly from Content Studio. +
 Some search engines have extended the format to allow new features in the robots.txt format. Like wildcards in the Disallow value.
 
+[#meta-exclude]
 === Meta exclude
 
-While it is possible to exclude a single page in robots.txt file, it will not stop the page from appearing in search engine results. This is because a link to a page can be indexed without the crawler visiting it.
-Let’s say on site: \http://foobar.com there is a link to a login page. The crawler could find the login link and show the link on the search engine even when robots.txt file excludes that specific page. 
+While it is possible to exclude a single page in robots.txt file, it will not stop the page from appearing in search engine results. +
+This is because a link to a page can be indexed without the crawler visiting it. 
 
-If you want to exclude a page from being on a search engine add the meta tag:
-<meta name="robots" content="noindex" />
-This tells all crawlers to not index the page. 
+Let’s say on site: \http://foobar.com there is a link to a login page. Crawlers could find the login link and show the link on the search engine even when robots.txt file excludes the target page. +
+Adding a exclude meta tag to the page then will tell crawlers to not index the page.
 
-Creating the meta tag is included in the SEO meta fields app. It will include a checkbox in the bottom of the content with “Hide from external search engines?”. Checking this will include the meta tag. 
+[source, html]
+----
+  <meta name="robots" content="noindex" />
+----
+
+Meta tags need to be in the `<head>` section of a page. 
+
+Creating the meta tag is included in the link:https://market.enonic.com/vendors/enonic/com.enonic.app.metafields[SEO metafield app]. +
+It will include a checkbox in the bottom of the content with “Hide from external search engines?”. +
+Checking this will include the meta tag. 
+
+NOTE: If you want to read more about exclusion see the indetail article link:https://developers.google.com/search/reference/robots_meta_tag[Robots meta tag]
 
 == Tags and attributes
 
-Sometimes crawlers will give the search result in a different language. Or your search result will only show up in a single language when the site supports multiple languages. It's possible to give information to the crawlers that a site supports different languages. It is easy to include the tags, and can give a huge benefit as some sites might not show up in the search results in a specific language.
+Sometimes search engines will link to a page in the wrong language. +
+A search result will only show up in a single language when the site supports multiple languages. +
+It's possible to give information to the crawlers that a site supports different languages. It is easy to include the tags, and it can give a huge benefit to some sites. They might not show up in the results when the user language is different.
 
+[#title]
 === Title tag
 
 For any user visiting your site, you want an accurate and descriptive title that will help them find the page they are looking for. This is also true for crawlers. Similar or identical titles can confuse or make it difficult to tell different pages apart, so each page should have a unique title. 
 
-It is really simple to add a title to a page in Enonic XP. In any page controller, create a custom title or even better: use the display name from its content. You can use a range of different templating engines with Enonic XP. Thymeleaf is used in the example below:
+It is really simple to add a title to a page in Enonic XP. In any page controller use the display name from its content to set a title. +
+You can use a range of different templating engines with Enonic XP. Thymeleaf is used in the example below:
 
-.Js controller
+.JS controller
 [source, JavaScript]
 ----
 const thymeleaf = require(“/lib/thymeleaf”);
@@ -236,6 +279,7 @@ exports.get = function() {
 
 If you don’t want your own code to set a title, our link:https://market.enonic.com/vendors/enonic/com.enonic.app.metafields[SEO metafield app] on the Enonic market has an override title feature. There you can set your own title that will replace any previously set title on the page.
 
+[#languages]
 === Languages
 
 Search engines will tailor the result to specific languages. This will help users find the specific content they are looking for. There are a lot of factors that give crawlers information on what language the site is in. The first thing most crawlers look for are meta tags and the lang attribute.:
