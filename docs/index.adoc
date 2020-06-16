@@ -1,33 +1,13 @@
 
-= SEO Web Development
+= XP developers guide to SEO
 
-:toc: 
-
-// Search engine crawlers
-// Sitemap
-// Robots.txt
-// Tags and attributes
-// Title
-// Languages
-// Multilingual sites and sites in different languages
-// Open Graph
-// URLs
-// Human readable urls
-// Site structure
-// Breadcrumbs
-// Error pages
-// Redirects
-// Quality
-// Alt attributes
-// Page speed
-// Responsive design
+SEO has become a hot topic, and we developers can make it easier for everyone if we use it properly. This guide will show you how to create seo improvements.
 
 [quote, The Google search quality team]
 ____
 Search Engine Optimization is about helping search engines understand and present content.
 ____
 
-SEO has become a hot topic, and we developers can make it easier for everyone if we use it properly. This guide will show you how to create seo improvements.
 
 == Introduction
 SEO: Helping search engines find what they need to produce search results. We can develop to make it easier for search engines to find information about the site.
