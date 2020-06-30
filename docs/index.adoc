@@ -270,9 +270,10 @@ exports.get = function() {
 [source, html thymleaf]
 ----
 <html>
-    <header>
+    <head>
         <title data-th-text=”${ title }”></title>
-    </header>
+        [...]
+    </head>
     [...]
 </html>
 ----
